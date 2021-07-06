@@ -1,5 +1,9 @@
 <template>
   <div class="page-content">
+    <div id="date-container">
+      <DateRange/>
+    </div>
+
     <PageTitle text="Dashboard"/>
     <PageSubTitle text="Market Insights"/>
     <SummaryCard/>
@@ -16,9 +20,10 @@ import PageTitle from '@/components/PageTitle.vue'
 import PageSubTitle from '@/components/PageSubTitle.vue'
 import SummaryCard from '@/components/SummaryCard.vue'
 import DetailCard from '@/components/DetailCard.vue'
+import DateRange from '@/components/DateRange.vue'
 
 export default {
-  components: { PageTitle, PageSubTitle, SummaryCard, DetailCard }
+  components: { PageTitle, PageSubTitle, SummaryCard, DetailCard, DateRange }
 }
 </script>
 
@@ -31,5 +36,13 @@ export default {
   display: grid;
   grid-template-columns: 570px 275px 275px;
   justify-content: space-between;
+}
+
+#date-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 481px;
+  height: 48px;
 }
 </style>

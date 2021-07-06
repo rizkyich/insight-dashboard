@@ -29,14 +29,14 @@ Variables
   --clr-grey-5: #d2d2d2;
   --clr-grey-6: #707070C4;
   --clr-grey-7: #4D4F5C;
-  --clr-grey-8: hsl(210, 31%, 80%);
+  --clr-grey-8: #8b8b8b;
   --clr-grey-9: hsl(212, 33%, 89%);
   --clr-grey-10: hsl(210, 36%, 96%);
   --clr-white: #fff;
   --clr-red-dark: hsl(360, 67%, 44%);
   --clr-red-light: #FF5656;
   --clr-green-dark: #37B04C;
-  --clr-green-light: hsl(125, 71%, 66%);
+  --clr-green-light: rgb(214,237,218);
   --clr-black: #000000DE;
   --clr-cream: #FFE7BD;
 
@@ -92,6 +92,7 @@ button {
   width: 100%;
   max-width: 1152px;
   height: 100%;
+  position: relative;
 }
 
 .card {

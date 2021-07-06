@@ -41,6 +41,9 @@ export default {
   flex: 1;
   height: 52px;
   padding: .5rem .5em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .product-name {
@@ -53,7 +56,6 @@ export default {
   margin-top: auto;
   display: flex;
   justify-content: space-between;
-  margin-top: 5px;
 }
 
 .product-detail p {
