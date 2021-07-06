@@ -13,11 +13,9 @@
           :timePicker="false"
           :timePicker24Hour="false"
           :appendToBody="false"
-          :alwaysShowCalendars="true"
-          :maxDate="dateRange.endDate"
-          :minDate="minDate"
           :ranges="ranges"
           :date-format="dateFormat"
+          :alwaysShowCalendars="true"
           @update="updateValues"
           @toggle="checkOpen"
           v-model="dateRange"
@@ -71,8 +69,9 @@ export default {
       immediate: true,
       handler(newValue) {
         const {endDate} = newValue
-        this.minDate = endDate.setMonth(endDate.getMonth() - 6)
-        console.log(this.minDate, 'sad')
+        const dt = new Date(endDate)
+        const temp = dt.setMonth(dt.getMonth() - 6)
+        this.minDate = new Date(temp)
       }
     }
   },
