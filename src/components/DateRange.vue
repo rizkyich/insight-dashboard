@@ -14,7 +14,10 @@
           :timePicker24Hour="false"
           :appendToBody="false"
           :alwaysShowCalendars="true"
+          :maxDate="dateRange.endDate"
+          :minDate="minDate"
           :ranges="ranges"
+          :date-format="dateFormat"
           @update="updateValues"
           @toggle="checkOpen"
           v-model="dateRange"
@@ -56,13 +59,23 @@ export default {
       endDate: new Date(),
     },
     ranges: {
-      'Today': null,
       'Yesterday': null,
       'Last 7 days': null,
       'Last 30 days': null,
       'This Month': null
-    }
+    },
+    minDate: null
   }),
+  watch: {
+    dateRange: {
+      immediate: true,
+      handler(newValue) {
+        const {endDate} = newValue
+        this.minDate = endDate.setMonth(endDate.getMonth() - 6)
+        console.log(this.minDate, 'sad')
+      }
+    }
+  },
   methods: {
     updateValues(values) {
       const {startDate, endDate} = values
@@ -84,7 +97,13 @@ export default {
         const year = dt.getFullYear()
       
         return day + '\n'+ month  + '\n'+  + year
-    }
+    },
+    dateFormat (classes, date) {
+        if (!classes.disabled) {
+          classes.disabled = date.getTime() >= new Date()
+        }
+        return classes
+      }
   },
   created() {
     const dt = new Date()
@@ -101,11 +120,9 @@ export default {
 
     const monthStart = new Date(new Date(new Date().setDate(1)))
 
-    this.dateRange.startDate = new Date().toDateString()
+    this.dateRange.startDate = yesterday.toDateString()
+    this.dateRange.endDate = yesterday.toDateString()
 
-    this.dateRange.endDate = new Date().toDateString()
-
-    this.ranges['Today'] = [dt, dt]
     this.ranges['Yesterday'] = [yesterday, yesterday]
     this.ranges['Last 7 days'] = [lastSeven ,yesterday]
     this.ranges['Last 30 days'] = [lastThirty, yesterday]
